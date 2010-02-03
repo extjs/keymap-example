@@ -1,0 +1,1 @@
+Simple example of GMail-style 2-step keyboard navigation using the Ext.KeyMap class. See http://www.extjs.com/blog/2010/02/02/gmail-style-keyboard-navigation-with-ext-keymap for more details.

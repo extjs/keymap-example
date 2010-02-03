@@ -23,7 +23,8 @@ var app = Ext.apply(new Ext.util.Observable(), {
         {
           id   : 'first',
           title: 'First tab',
-          html : 'First tab content'
+          html : '<p>First tab content.<p><p>Press <b>g</b> followed by <b>s</b> to switch to the second tab, or <b>g</b> followed by <b>t</b> to switch to the third.</p>' +
+                 '<p><a target="_blank" href="app.js">View the source code.</a></p>'
         },
         {
           id   : 'second',
