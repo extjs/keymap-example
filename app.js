@@ -56,11 +56,13 @@ var app = Ext.apply(new Ext.util.Observable(), {
       key  : 'g',
       scope: this,
       fn   : function() {
-        this.navigateOnNextKey = true;
+        if (Ext.fly(document.activeElement).dom.type != 'text') {
+          this.navigateOnNextKey = true;
         
-        (function() {
-          this.navigateOnNextKey = false;
-        }).defer(2000, this);
+          (function() {
+            this.navigateOnNextKey = false;
+          }).defer(2000, this);
+        }
       }
     });
     
@@ -72,20 +74,18 @@ var app = Ext.apply(new Ext.util.Observable(), {
     };
     
     //add a binding for each of our shortcut keys
-    for (var key in navKeys) {
+    Ext.iterate(navKeys, function(key, tabId) {
       this.keymap.addBinding({
         key  : key,
         scope: this,
-        fn   : function(tabId) {
-          return function() {
-            if (this.navigateOnNextKey) {
-              this.tabs.setActiveTab(tabId);
-              this.navigateOnNextKey = false;
-            }
-          };
-        }(navKeys[key])
+        fn   : function() {
+          if (this.navigateOnNextKey) {
+            this.tabs.setActiveTab(tabId);
+            this.navigateOnNextKey = false;
+          }
+        }
       });
-    }
+    }, this);
   }
 });
 
